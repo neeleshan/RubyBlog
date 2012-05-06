@@ -1,11 +1,15 @@
 RubyBlog::Application.routes.draw do
   get "static_pages/home"
-
+  get "users/new"
   get "static_pages/about"
 
+  match '/about',   to: 'static_pages#about'
+  match '/signup',  to: 'users#new'
   resources :microposts
 
   resources :users
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
