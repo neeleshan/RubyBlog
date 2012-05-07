@@ -1,12 +1,15 @@
 RubyBlog::Application.routes.draw do
   get "static_pages/home"
-  get "users/new"
   get "static_pages/about"
 
+  
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
   match '/about',   to: 'static_pages#about'
   match '/signup',  to: 'users#new'
-  resources :microposts
 
+  resources :microposts,  only: [:create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
   resources :users
 
 
