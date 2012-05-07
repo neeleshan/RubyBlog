@@ -1,4 +1,6 @@
 RubyBlog::Application.routes.draw do
+  get "static_page/view"
+
   get "static_pages/home"
   get "static_pages/about"
 

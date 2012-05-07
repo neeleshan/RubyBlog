@@ -54,8 +54,13 @@ before_filter :admin_user,     only: :destroy
         format.html { redirect_to @user }
         format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+
+     
+		
+		flash[:error] = @user.errors.full_messages
+		format.html { redirect_to signup_path }
+        #format.html { render action: "new" }
+        #format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end

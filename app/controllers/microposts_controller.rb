@@ -51,8 +51,10 @@ before_filter :correct_user,   only: :destroy
         format.html { redirect_to root_path }
         format.json { render json: @micropost, status: :created, location: @micropost }
       else
+	  flash[:error] = "Micropost cannot be blank!"
 		@feed_items = []
-        format.html { render action: 'static_pages/home' }
+		format.html { redirect_to root_path }
+        #format.html { render action: "static_pages/about" }
         format.json { render json: @micropost.errors, status: :unprocessable_entity }
       end
     end
